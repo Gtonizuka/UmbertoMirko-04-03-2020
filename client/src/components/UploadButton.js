@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './UploadButton.scss';
 import Alert from './Alert';
 import axios from 'axios';
+import { FilesContext } from '../context/FilesContext';
 
 const UploadButton = () => {
+  const { addFile } = useContext(FilesContext);
+
   const [uploadedFile, setUploadedFile] = useState({});
   const [fileName, setFileName] = useState('');
   const [alert, setAlert] = useState('');
 
   function handleFile(e) {
-    // setUploadedFile(e.target.files, 'aa');
     console.log(e.target.files, 'a');
     const file = e.target.files[0];
     const mbSize = e.target.files[0].size / 1024 / 1024; // in MB
     if (mbSize > 10) {
       setAlert('File size exceeds 10 MB');
-      // $(file).val(''); //for clearing with Jquery
       return;
     } else {
       setUploadedFile(file);
@@ -26,8 +27,6 @@ const UploadButton = () => {
   // Upload file handler
   const fileUploadHandler = async () => {
     const formData = new FormData();
-    console.log(uploadedFile);
-    console.log(fileName);
     formData.append('imageFe', uploadedFile, fileName);
     try {
       const res = await axios.post('/api/upload', formData, {
@@ -35,16 +34,19 @@ const UploadButton = () => {
           'content-type': 'multipart/form-data'
         }
       });
-      console.log(res);
+      if (res.status === 200) {
+        setAlert('File has been uploaded succesfully');
 
-      // const { fileName, filePath } = res.data;
-      setAlert('File has been uploaded succesfully');
+        const { _id, name, size } = res.data;
+        addFile(_id, name, size);
+        return;
+      }
+      setAlert('Problem with uploading your file. Please try again.');
     } catch (err) {
       throw new Error(err);
     }
   };
 
-  console.log(fileName, 'su');
   return (
     <div>
       {alert && <Alert message={alert} />}
