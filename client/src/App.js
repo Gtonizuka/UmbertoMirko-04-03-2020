@@ -9,7 +9,8 @@ function App() {
   return (
     <div className='App'>
       <FilesContextProvider>
-        <h1>Mirkooo</h1>
+        <h1>UMG File Uploader</h1>
+        <SearchInput />
         <UploadButton />
         <FilesList />
       </FilesContextProvider>

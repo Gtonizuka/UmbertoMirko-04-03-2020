@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
-// import './FileDetails.scss';
 import { FilesContext } from '../context/FilesContext';
 
 const FileDetails = ({ _id, name, size }) => {

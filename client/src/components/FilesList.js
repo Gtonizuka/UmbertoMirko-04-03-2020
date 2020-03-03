@@ -2,21 +2,23 @@ import React, { useContext } from 'react';
 import './FilesList.scss';
 import { FilesContext } from '../context/FilesContext';
 import FileDetails from './FileDetails';
-import SearchInput from './SearchInput';
 
 const FilesList = () => {
-  const { files } = useContext(FilesContext);
+  const { files, search, updateSearch } = useContext(FilesContext);
+
+  let filteredItems = files.filter(
+    file => file.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
+  );
 
   return (
     <div>
-      <SearchInput />
       {files.length > 0 ? (
         <h2>{files.length} documents.</h2>
       ) : (
         <h2>There are no files! Please upload</h2>
       )}
-      {files &&
-        files.map(file => {
+      {filteredItems &&
+        filteredItems.map(file => {
           const { _id, name, size } = file;
           return (
             <div className='box__container' key={file._id}>

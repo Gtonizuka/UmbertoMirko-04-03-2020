@@ -5,6 +5,7 @@ export const FilesContext = createContext();
 
 const FilesContextProvider = props => {
   const [files, setFiles] = useState([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     getData();
@@ -24,9 +25,15 @@ const FilesContextProvider = props => {
     setFiles(files.filter(file => file._id !== _id));
   };
 
+  const updateSearch = str => {
+    setSearch(str);
+  };
+
   console.log(files, 'from context');
   return (
-    <FilesContext.Provider value={{ files, addFile, removeFile }}>
+    <FilesContext.Provider
+      value={{ files, addFile, removeFile, search, updateSearch }}
+    >
       {props.children}
     </FilesContext.Provider>
   );
