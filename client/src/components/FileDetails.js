@@ -18,10 +18,9 @@ const FileDetails = ({ _id, name, size }) => {
         removeFile(res.data._id);
         return;
       }
-      updateAlert(`Problem with deleting file`, 'WARNING');
+      updateAlert(`Problem with deleting file.`, 'WARNING');
     } catch (err) {
-      updateAlert(`Problem with deleting file`, 'WARNING');
-      throw new Error(err);
+      updateAlert(`Problem with deleting file.`, 'WARNING');
     }
   };
 

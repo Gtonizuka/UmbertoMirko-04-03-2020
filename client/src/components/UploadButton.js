@@ -10,16 +10,21 @@ const UploadButton = () => {
 
   const [uploadedFile, setUploadedFile] = useState({});
   const [fileName, setFileName] = useState('');
+  const [active, setActive] = useState(false);
 
   function handleFile(e) {
     const file = e.target.files[0];
-    const mbSize = e.target.files[0].size / 1024 / 1024; // in MB
-    if (mbSize > 10) {
-      updateAlert('File size exceeds 10 MB', 'WARNING');
-      return;
-    } else {
-      setUploadedFile(file);
-      setFileName(file.name);
+    // Avoid running function if a file is selected and then user select another file and cancel it
+    if (file) {
+      const mbSize = e.target.files[0].size / 1024 / 1024; // in MB
+      if (mbSize > 10) {
+        updateAlert('File size exceeds 10 MB', 'WARNING');
+        return;
+      } else {
+        setUploadedFile(file);
+        setFileName(file.name);
+        setActive(true);
+      }
     }
   }
 
@@ -38,25 +43,29 @@ const UploadButton = () => {
 
         const { _id, name, size } = res.data;
         addFile(_id, name, size);
+        setActive(false);
         return;
       }
       updateAlert(
         'Problem with uploading your file. Please try again.',
         'WARNING'
       );
+      setActive(false);
     } catch (err) {
       updateAlert(
-        'Problem with uploading your file. Please try again.',
+        `Problem with uploading your file. ${err.response.data}`,
         'WARNING'
       );
-      throw new Error(err);
+      // throw new Error(err);
     }
   };
 
   return (
     <div>
-      <input type='file' onChange={handleFile} />
-      <button onClick={fileUploadHandler}>UPLOAD</button>
+      <input type='file' onChange={handleFile} accept='image/jpeg, image/png' />
+      <button onClick={fileUploadHandler} disabled={!active}>
+        UPLOAD
+      </button>
     </div>
   );
 };
