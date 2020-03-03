@@ -1,18 +1,16 @@
 import React from 'react';
 import './App.css';
-import SearchInput from './components/SearchInput';
-import UploadButton from './components/UploadButton';
-import FilesList from './components/FilesList';
 import FilesContextProvider from './context/FilesContext';
+import AlertContextProvider from './context/AlertContext';
+import LayoutContainer from './components/LayoutContainer';
 
 function App() {
   return (
     <div className='App'>
       <FilesContextProvider>
-        <h1>UMG File Uploader</h1>
-        <SearchInput />
-        <UploadButton />
-        <FilesList />
+        <AlertContextProvider>
+          <LayoutContainer />
+        </AlertContextProvider>
       </FilesContextProvider>
     </div>
   );

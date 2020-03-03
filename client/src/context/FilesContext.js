@@ -12,9 +12,12 @@ const FilesContextProvider = props => {
   }, []);
 
   const getData = async () => {
-    const res = await axios.get('http://localhost:3000/api/files');
-    console.log(res.data);
-    setFiles(res.data);
+    try {
+      const res = await axios.get('http://localhost:3000/api/files');
+      setFiles(res.data);
+    } catch (err) {
+      throw new Error(err);
+    }
   };
 
   const addFile = (_id, name, size, data) => {

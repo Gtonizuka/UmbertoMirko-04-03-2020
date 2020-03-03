@@ -1,22 +1,21 @@
 import React, { useState, useContext } from 'react';
 import './UploadButton.scss';
-import Alert from './Alert';
 import axios from 'axios';
 import { FilesContext } from '../context/FilesContext';
+import { AlertContext } from '../context/AlertContext';
 
 const UploadButton = () => {
   const { addFile } = useContext(FilesContext);
+  const { updateAlert } = useContext(AlertContext);
 
   const [uploadedFile, setUploadedFile] = useState({});
   const [fileName, setFileName] = useState('');
-  const [alert, setAlert] = useState('');
 
   function handleFile(e) {
-    console.log(e.target.files, 'a');
     const file = e.target.files[0];
     const mbSize = e.target.files[0].size / 1024 / 1024; // in MB
     if (mbSize > 10) {
-      setAlert('File size exceeds 10 MB');
+      updateAlert('File size exceeds 10 MB', 'WARNING');
       return;
     } else {
       setUploadedFile(file);
@@ -35,21 +34,27 @@ const UploadButton = () => {
         }
       });
       if (res.status === 200) {
-        setAlert('File has been uploaded succesfully');
+        updateAlert('File has been uploaded succesfully', 'SUCCESS');
 
         const { _id, name, size } = res.data;
         addFile(_id, name, size);
         return;
       }
-      setAlert('Problem with uploading your file. Please try again.');
+      updateAlert(
+        'Problem with uploading your file. Please try again.',
+        'WARNING'
+      );
     } catch (err) {
+      updateAlert(
+        'Problem with uploading your file. Please try again.',
+        'WARNING'
+      );
       throw new Error(err);
     }
   };
 
   return (
     <div>
-      {alert && <Alert message={alert} />}
       <input type='file' onChange={handleFile} />
       <button onClick={fileUploadHandler}>UPLOAD</button>
     </div>
