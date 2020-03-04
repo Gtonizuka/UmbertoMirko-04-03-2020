@@ -62,10 +62,18 @@ const UploadButton = () => {
 
   return (
     <>
-      <input type='file' onChange={handleFile} accept='image/jpeg, image/png' />
-      <button onClick={fileUploadHandler} disabled={!active}>
-        UPLOAD
-      </button>
+      <input
+        type='file'
+        className='custom-file-input'
+        onChange={handleFile}
+        accept='image/jpeg, image/png'
+      />
+      <div className='upload-meta'>
+        <button onClick={fileUploadHandler} disabled={!active}>
+          UPLOAD
+        </button>
+        {fileName && <span className='file-name'>{fileName}</span>}
+      </div>
     </>
   );
 };

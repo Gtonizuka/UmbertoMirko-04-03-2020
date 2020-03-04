@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import axios from 'axios';
 import { FilesContext } from '../context/FilesContext';
 import { AlertContext } from '../context/AlertContext';
+import formatBytes from '../utils/formatBytes';
 
 const FileDetails = ({ _id, name, size }) => {
   const { removeFile } = useContext(FilesContext);
@@ -27,8 +28,10 @@ const FileDetails = ({ _id, name, size }) => {
   return (
     <div>
       <p>{name}</p>
-      <p>{size}</p>
-      <button onClick={() => deleteFile(_id)}>delete</button>
+      <p>{formatBytes(size)}</p>
+      <button className='button warning' onClick={() => deleteFile(_id)}>
+        delete
+      </button>
     </div>
   );
 };

@@ -1,15 +1,16 @@
 .box__container {
+  background: #fff;
   border: 1px solid black;
+  border-radius: 7px;
   flex: 0 1 32%;
   flex-basis: 1;
-  height: 100px;
-  margin-bottom: 2%; /* (100-32*3)/2 */
   height: 150px;
+  margin-bottom: 2%; /* (100-32*3)/2 */
+  text-align: center;
 
   // IPAD
   @media only screen and (max-width: 960px) {
     flex: 0 0 40%;
-    background: red;
     flex-shrink: 1;
   }
 
@@ -22,11 +23,20 @@
 .meta-container {
   flex: 1 0 100%;
   margin: 50px 0 15px 0;
+  @media only screen and (max-width: 759px) {
+    margin-top: 0;
+  }
 }
 
 h3 {
   float: left;
   &.right-align {
     float: right;
+  }
+  @media only screen and (max-width: 759px) {
+    text-align: center;
+    margin-bottom: 0;
+    font-size: 1.25em;
+    width: 100%;
   }
 }

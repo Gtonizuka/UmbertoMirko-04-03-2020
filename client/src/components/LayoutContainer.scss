@@ -7,6 +7,18 @@
   }
 }
 
+.flex-container {
+  @media only screen and (max-width: 759px) {
+    flex-direction: column-reverse;
+  }
+}
+
 .flex-item.col-lg {
   flex: 1 0 30%;
+}
+.flex-item {
+  // MOBILE
+  @media only screen and (max-width: 759px) {
+    flex: 1 1 100%;
+  }
 }

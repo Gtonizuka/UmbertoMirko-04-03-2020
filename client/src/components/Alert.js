@@ -5,13 +5,9 @@ import { AlertContext } from '../context/AlertContext';
 const Alert = () => {
   const { alert } = useContext(AlertContext);
 
-  // const alertStyle = {
-  //   backgroundColor: alert.color
-  // };
-
   const setAlertStyle = () => {
     let alertStyle = {
-      backgroundColor: 'white',
+      backgroundColor: 'transparent',
       color: 'black'
     };
 
@@ -19,13 +15,13 @@ const Alert = () => {
 
     if (msg === 'SUCCESS') {
       alertStyle = {
-        backgroundColor: 'green',
-        color: 'white'
+        backgroundColor: '#81b71a',
+        color: '#155724'
       };
     } else if (msg === 'WARNING') {
       alertStyle = {
-        backgroundColor: 'red',
-        color: 'black'
+        backgroundColor: '#f8d7da',
+        color: '#721c24'
       };
     }
     return alertStyle;
@@ -34,8 +30,8 @@ const Alert = () => {
   const alStyle = setAlertStyle();
 
   return (
-    <div className='warning-container'>
-      <p style={alStyle}>{alert.text}</p>
+    <div className='alert' style={alStyle}>
+      <p>{alert.text}</p>
     </div>
   );
 };

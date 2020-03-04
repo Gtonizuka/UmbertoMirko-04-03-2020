@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import FilesContextProvider from './context/FilesContext';
 import AlertContextProvider from './context/AlertContext';
 import LayoutContainer from './components/LayoutContainer';

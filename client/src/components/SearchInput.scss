@@ -4,4 +4,10 @@ input#search {
   float: left;
   padding: 10px 0 10px 10px;
   width: 50%;
+
+  // MOBILE
+  @media only screen and (max-width: 759px) {
+    width: 90%;
+    margin-top: 20px;
+  }
 }

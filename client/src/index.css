@@ -5,10 +5,53 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #a3c2c2;
+  background-color: #2590eb;
+  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.flex-container,
+.flex-container-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Autofill last space or last time is misaglined */
+.flex-container-grid::after {
+  content: '';
+  flex: 0 0 32%;
+  max-width: 310px;
+}
+
+h1 {
+  margin-bottom: 50px;
+}
+
+/*
+  Buttons
+*/
+
+.button {
+  background-color: #456bd9;
+  border-color: #3e60c3;
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 1em;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  width: 130px;
+}
+
+.button.warning {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+  cursor: pointer;
+  width: 100px;
 }
