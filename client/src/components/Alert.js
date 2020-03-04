@@ -31,7 +31,7 @@ const Alert = () => {
 
   return (
     <div className='alert' style={alStyle}>
-      <p>{alert.text}</p>
+      <p data-test='alert-para'>{alert.text}</p>
     </div>
   );
 };

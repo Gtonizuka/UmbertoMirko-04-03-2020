@@ -1,51 +1,35 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import Alert from '../components/Alert';
-import * as AlertContext from '../context/AlertContext';
+import AlertContextProvider from '../context/AlertContext';
+import { findByTestAttr } from '../utils/testUtils';
 
-describe('<Alert />', () => {
-  test('it should mock the context', () => {
-    const contextValues = { text: 'suca', msg: 'SUCCESS' };
-    jest
-      .spyOn(AlertContext, 'useAlertContext')
-      .mockImplementation(() => contextValues);
-    const wrapper = shallow(<Alert />);
+describe('Alert', () => {
+  let wrapper;
+  beforeEach(() => {
+    const contextValues = { text: 'mock', msg: 'SUCCESS' };
+
+    // Below mounting is  needed as Enzyme does not yet support shallow mocks
+    wrapper = mount(
+      <AlertContextProvider value={contextValues}>
+        <Alert />
+      </AlertContextProvider>
+    );
+  });
+
+  test('should be defined', () => {
+    expect(wrapper).toBeDefined();
+  });
+
+  test('Should have a single node containing an alert class', () => {
     const element = wrapper.find('.alert');
+    expect(element.length).toBe(1);
+  });
 
-    expect(element.length()).toBe(1);
+  test('Should render a  paragraph', () => {
+    const element = findByTestAttr(wrapper, 'alert-para');
+    expect(element.length).toBe(1);
+    // this is empty by default
+    expect(element.text()).toEqual('');
   });
 });
-
-// test('enzyme dive', () => {
-//   jest.spyOn(React, 'useContext').mockImplementation(context => ({
-//     alert: {
-//       text: '',
-//       msg: ''
-//     }
-//   }));
-
-//   const TestComponent = () => (
-//     <AlertContext.Provider alert='Provided Value'>
-//       <Alert />
-//     </AlertContext.Provider>
-//   );
-
-//   const component = shallow(<TestComponent />);
-//   console.log(component, 'coo');
-//   expect(
-//     component
-//       .find(Alert)
-//       .dive()
-//       .find('alert')
-//   ).toBe(1);
-
-//   //   const wrapper = component.find('.alert');
-//   //   expect(wrapper.length).toBe(1);
-
-//   //   expect(
-//   //     element
-//   //       .find(Alert)
-//   //       .dive()
-//   //       .text()
-//   //   ).toBe('Provided Value');
-// });

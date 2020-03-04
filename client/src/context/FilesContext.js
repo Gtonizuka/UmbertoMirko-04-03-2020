@@ -32,7 +32,6 @@ const FilesContextProvider = props => {
     setSearch(str);
   };
 
-  console.log(files, 'from context');
   return (
     <FilesContext.Provider
       value={{ files, addFile, removeFile, search, updateSearch }}

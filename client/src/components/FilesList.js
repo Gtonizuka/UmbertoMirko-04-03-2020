@@ -14,7 +14,7 @@ const FilesList = () => {
   const sumSizes = arr => {
     let total = 0;
     arr.map(el => {
-      total = total + el.size;
+      return (total = total + el.size);
     });
     return total;
   };

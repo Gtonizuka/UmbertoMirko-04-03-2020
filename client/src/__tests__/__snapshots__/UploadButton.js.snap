@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Upload Button should be defined 1`] = `ReactWrapper {}`;
+
+exports[`Upload Button should match snapshot 1`] = `ReactWrapper {}`;
+
+exports[`Upload should match snapshot 1`] = `ReactWrapper {}`;
