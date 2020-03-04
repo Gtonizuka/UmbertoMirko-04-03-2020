@@ -10,7 +10,13 @@ const SearchInput = () => {
 
   return (
     <label>
-      <input type='text' value={search} onChange={searchItems} id='search' />
+      <input
+        type='text'
+        value={search}
+        onChange={searchItems}
+        id='search'
+        placeholder='Search documents...'
+      />
     </label>
   );
 };

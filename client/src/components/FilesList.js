@@ -11,9 +11,12 @@ const FilesList = () => {
   );
 
   return (
-    <div>
+    <div className='flex-container-grid'>
       {files.length > 0 ? (
-        <h2>{files.length} documents.</h2>
+        <div className='meta-container'>
+          <h3>{files.length} documents.</h3>{' '}
+          <h3 className='right-align'>Total size</h3>
+        </div>
       ) : (
         <h2>There are no files! Please upload</h2>
       )}

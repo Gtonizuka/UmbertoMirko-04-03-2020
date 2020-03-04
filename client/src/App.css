@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.flex-container,
+.flex-container-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Autofill last space or last time is misaglined */
+.flex-container-grid::after {
+  content: '';
+  flex: 0 0 32%;
+  max-width: 310px;
+}
+
+h1 {
+  margin-bottom: 50px;
+}

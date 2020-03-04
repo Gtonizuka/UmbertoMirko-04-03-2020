@@ -61,12 +61,12 @@ const UploadButton = () => {
   };
 
   return (
-    <div>
+    <>
       <input type='file' onChange={handleFile} accept='image/jpeg, image/png' />
       <button onClick={fileUploadHandler} disabled={!active}>
         UPLOAD
       </button>
-    </div>
+    </>
   );
 };
 

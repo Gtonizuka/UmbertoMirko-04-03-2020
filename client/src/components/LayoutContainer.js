@@ -7,11 +7,17 @@ import Alert from './Alert';
 
 function LayoutContainer() {
   return (
-    <div className='container'>
+    <div className='wrapper'>
       <Alert />
-      <h1>UMG File Uploader</h1>
-      <UploadButton />
-      <SearchInput />
+      <h1>Umberto Mirko Garozzo File Uploader</h1>
+      <div className='flex-container'>
+        <div className='flex-item col-lg'>
+          <SearchInput />
+        </div>
+        <div className='flex-item col-sm'>
+          <UploadButton />
+        </div>
+      </div>
       <FilesList />
     </div>
   );
