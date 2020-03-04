@@ -9,7 +9,6 @@ const AlertContextProvider = props => {
   });
 
   useEffect(() => {
-    console.log('foo');
     setAlert({
       ...props.value
     });

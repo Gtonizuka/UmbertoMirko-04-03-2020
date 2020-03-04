@@ -33,7 +33,7 @@ describe('Upload', () => {
     expect(element.length).toBe(1);
   });
 
-  it('should have an input value', () => {
+  it('should have an input value that contains a string', () => {
     expect(typeof wrapper.find('.custom-file-input').instance().value).toBe(
       'string'
     );
@@ -43,5 +43,11 @@ describe('Upload', () => {
     const element = findByTestAttr(wrapper, 'button');
     expect(element.length).toBe(1);
     expect(element.text()).toEqual('UPLOAD');
+    element.simulate('click');
+  });
+
+  it('should have a disabled button by default', () => {
+    const element = findByTestAttr(wrapper, 'button');
+    expect(element.prop('disabled')).toBe(true);
   });
 });
