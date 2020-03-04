@@ -7,7 +7,7 @@ function App() {
   return (
     <div className='App'>
       <FilesContextProvider>
-        <AlertContextProvider>
+        <AlertContextProvider value={{ text: '', msg: '' }}>
           <LayoutContainer />
         </AlertContextProvider>
       </FilesContextProvider>

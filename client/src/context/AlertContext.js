@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 export const AlertContext = createContext();
 
@@ -7,6 +7,13 @@ const AlertContextProvider = props => {
     text: '',
     msg: ''
   });
+
+  useEffect(() => {
+    console.log('foo');
+    setAlert({
+      ...props.value
+    });
+  }, [setAlert]);
 
   const updateAlert = (text, msg) => {
     setAlert({

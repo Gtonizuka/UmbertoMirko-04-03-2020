@@ -26,10 +26,9 @@ describe('Alert', () => {
     expect(element.length).toBe(1);
   });
 
-  test('Should render a  paragraph', () => {
+  test('Should render a  paragraph that contains expected mock value', () => {
     const element = findByTestAttr(wrapper, 'alert-para');
     expect(element.length).toBe(1);
-    // this is empty by default
-    expect(element.text()).toEqual('');
+    expect(element.text()).toEqual('mock');
   });
 });
