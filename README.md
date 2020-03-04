@@ -47,12 +47,12 @@ Only external library on the front end is axios for making HTTP requests.
 
 I am using Express for creating the API. I have decided to use a local instance of MongoDB vs storing in S3 or Firebase as I thought that this also shows how I would set up a backend layer (vs just storing files in the cloud). Also easier for local testing if people reviewing the code don't have a AWS account.
 
-## GET /api/files
+### GET /api/files
 
 - GET a list of files stored in the db
 - Returns a list of files or error
 
-## POST /api/upload
+### POST /api/upload
 
 - POST a single image to db
 - Check image extension against whitelist
@@ -60,7 +60,7 @@ I am using Express for creating the API. I have decided to use a local instance 
 - Expects name, size, data (not being stored in the db for now)
 - Returns successfully stored file info or error
 
-## DELETE /api/files/:id
+### DELETE /api/files/:id
 
 - DELETE a single image in db
 - Expects image id as parameter
