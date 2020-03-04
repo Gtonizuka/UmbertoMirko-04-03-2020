@@ -12,7 +12,7 @@ const AlertContextProvider = props => {
     setAlert({
       ...props.value
     });
-  }, [setAlert]);
+  }, [setAlert, props.value]);
 
   const updateAlert = (text, msg) => {
     setAlert({

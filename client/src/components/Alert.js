@@ -6,7 +6,6 @@ const Alert = () => {
   const { alert } = useContext(AlertContext);
   const { msg } = alert;
 
-  const msgStyle = msg.toLowerCase();
   return (
     <div className={`alert ${msg}`}>
       <p data-test='alert-para'>{alert.text}</p>
